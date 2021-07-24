@@ -1,0 +1,83 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ColorSliders.gd" type="Script" id=1]
+
+[node name="Colors" type="GridContainer"]
+margin_right = 214.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+columns = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RedLabel" type="Label" parent="."]
+margin_top = 1.0
+margin_right = 43.0
+margin_bottom = 15.0
+text = "RED"
+
+[node name="RedSlider" type="HSlider" parent="."]
+margin_left = 47.0
+margin_right = 214.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="GreenLabel" type="Label" parent="."]
+margin_top = 21.0
+margin_right = 43.0
+margin_bottom = 35.0
+text = "GREEN"
+
+[node name="GreenSlider" type="HSlider" parent="."]
+margin_left = 47.0
+margin_top = 20.0
+margin_right = 214.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="BlueLabel" type="Label" parent="."]
+margin_top = 41.0
+margin_right = 43.0
+margin_bottom = 55.0
+text = "BLUE"
+
+[node name="BlueSlider" type="HSlider" parent="."]
+margin_left = 47.0
+margin_top = 40.0
+margin_right = 214.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="AlphaLabel" type="Label" parent="."]
+margin_top = 61.0
+margin_right = 43.0
+margin_bottom = 75.0
+text = "ALPHA"
+
+[node name="AlphaSlider" type="HSlider" parent="."]
+margin_left = 47.0
+margin_top = 60.0
+margin_right = 214.0
+margin_bottom = 76.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="value_changed" from="RedSlider" to="." method="_updated_slider_value" binds= [ 0 ]]
+[connection signal="value_changed" from="GreenSlider" to="." method="_updated_slider_value" binds= [ 1 ]]
+[connection signal="value_changed" from="BlueSlider" to="." method="_updated_slider_value" binds= [ 2 ]]
+[connection signal="value_changed" from="AlphaSlider" to="." method="_updated_slider_value" binds= [ 3 ]]

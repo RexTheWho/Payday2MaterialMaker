@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Textures/ingame_gui_icon_base.png" type="Texture" id=1]
+[ext_resource path="res://ProjectManager.gd" type="Script" id=2]
+[ext_resource path="res://Textures/loading_circle.png" type="Texture" id=3]
+[ext_resource path="res://Textures/loading_circle_bg.png" type="Texture" id=4]
+
+[node name="ProjectManager" type="PanelContainer"]
+margin_right = 320.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 128, 96 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+timer = NodePath("Timer")
+tween = NodePath("Tween")
+namer = NodePath("List/SaveBar/SaveName")
+icons = NodePath("List/Texture")
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="List" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 313.0
+margin_bottom = 89.0
+custom_constants/separation = 0
+
+[node name="SaveBar" type="HBoxContainer" parent="List"]
+margin_right = 306.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+custom_constants/separation = 0
+
+[node name="SaveName" type="LineEdit" parent="List/SaveBar"]
+margin_right = 265.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+placeholder_text = "Custom name..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveButton" type="Button" parent="List/SaveBar"]
+margin_left = 265.0
+margin_right = 306.0
+margin_bottom = 24.0
+size_flags_vertical = 3
+text = "save"
+
+[node name="Texture" type="TextureRect" parent="List"]
+margin_top = 24.0
+margin_right = 306.0
+margin_bottom = 82.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fake" type="TextureRect" parent="List/Texture"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Loading" type="TextureProgress" parent="List/Texture/Fake"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
+rect_scale = Vector2( 0.3, 0.3 )
+rect_pivot_offset = Vector2( 64, 64 )
+step = 0.1
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 3 )
+fill_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="List/SaveBar/SaveButton" to="." method="_on_SaveButton_pressed"]

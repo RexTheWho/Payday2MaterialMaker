@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Sliders.gd" type="Script" id=1]
+
+[node name="Sliders" type="GridContainer"]
+margin_right = 218.0
+margin_bottom = 16.0
+columns = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]

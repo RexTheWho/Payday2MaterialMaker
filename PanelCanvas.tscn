@@ -1,0 +1,218 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://PanelCanvas.gd" type="Script" id=1]
+[ext_resource path="res://Textures/ui_bgeffect.png" type="Texture" id=2]
+[ext_resource path="res://Materials/moving_bg.tres" type="Material" id=3]
+[ext_resource path="res://Textures/base_gradient_temp.png" type="Texture" id=4]
+[ext_resource path="res://PanelCanvasMaterialSelector.gd" type="Script" id=5]
+[ext_resource path="res://PanelInformation.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.231132, 0.566038, 0.648585, 0.71934, 0.856132, 0.943396, 1 )
+colors = PoolColorArray( 0.191406, 0.191406, 0.191406, 1, 0.905882, 0.772549, 0.894118, 1, 0.580392, 0.603922, 0.572549, 1, 0.611765, 0.588235, 0.619608, 1, 0.623529, 0.635294, 0.623529, 1, 0.235849, 0.235849, 0.235849, 1, 0.705882, 0.72549, 0.701961, 1, 0.351506, 0.351506, 0.351506, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 256
+
+[node name="PanelCanvas" type="PanelContainer"]
+margin_right = 270.0
+margin_bottom = 298.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+sprite = NodePath("List/Result")
+
+[node name="TEMP" type="TextureRect" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 263.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 0, 4 )
+size_flags_vertical = 0
+texture = SubResource( 2 )
+expand = true
+
+[node name="List" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 263.0
+margin_bottom = 605.0
+
+[node name="TitleBar" type="HBoxContainer" parent="List"]
+margin_right = 256.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="List/TitleBar"]
+margin_top = 5.0
+margin_right = 90.0
+margin_bottom = 19.0
+text = "Base Gradient"
+
+[node name="BackgroundToggle" type="CheckBox" parent="List/TitleBar"]
+margin_left = 209.0
+margin_right = 256.0
+margin_bottom = 24.0
+size_flags_horizontal = 10
+pressed = true
+text = "BG"
+
+[node name="Result" type="TextureRect" parent="List"]
+margin_top = 28.0
+margin_right = 256.0
+margin_bottom = 284.0
+rect_min_size = Vector2( 256, 256 )
+rect_pivot_offset = Vector2( 128, 128 )
+size_flags_horizontal = 6
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BGVisuals" type="TextureRect" parent="List/Result"]
+show_behind_parent = true
+material = ExtResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MaterialSelect" type="Control" parent="List/Result"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="HBoxContainer" parent="List/Result/MaterialSelect"]
+modulate = Color( 1, 1, 1, 0.792157 )
+material = ExtResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mat1" type="TextureButton" parent="List/Result/MaterialSelect/Buttons"]
+use_parent_material = true
+margin_bottom = 256.0
+size_flags_vertical = 3
+texture_hover = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Wear1" type="TextureButton" parent="List/Result/MaterialSelect/Buttons"]
+use_parent_material = true
+margin_bottom = 256.0
+size_flags_vertical = 3
+texture_hover = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Mat2" type="TextureButton" parent="List/Result/MaterialSelect/Buttons"]
+use_parent_material = true
+margin_bottom = 256.0
+size_flags_vertical = 3
+texture_hover = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Wear2" type="TextureButton" parent="List/Result/MaterialSelect/Buttons"]
+use_parent_material = true
+margin_bottom = 256.0
+size_flags_vertical = 3
+texture_hover = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Mat3" type="TextureButton" parent="List/Result/MaterialSelect/Buttons"]
+use_parent_material = true
+margin_bottom = 256.0
+size_flags_vertical = 3
+texture_hover = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Wear3" type="TextureButton" parent="List/Result/MaterialSelect/Buttons"]
+use_parent_material = true
+margin_bottom = 256.0
+size_flags_vertical = 3
+texture_hover = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Mat4" type="TextureButton" parent="List/Result/MaterialSelect/Buttons"]
+use_parent_material = true
+margin_bottom = 256.0
+size_flags_vertical = 3
+texture_hover = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Wear4" type="TextureButton" parent="List/Result/MaterialSelect/Buttons"]
+use_parent_material = true
+margin_bottom = 256.0
+size_flags_vertical = 3
+texture_hover = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Mat5" type="TextureButton" parent="List/Result/MaterialSelect/Buttons"]
+use_parent_material = true
+margin_bottom = 256.0
+size_flags_vertical = 3
+texture_hover = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Wear5" type="TextureButton" parent="List/Result/MaterialSelect/Buttons"]
+use_parent_material = true
+margin_bottom = 256.0
+size_flags_vertical = 3
+texture_hover = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Mat6" type="TextureButton" parent="List/Result/MaterialSelect/Buttons"]
+use_parent_material = true
+margin_bottom = 256.0
+size_flags_vertical = 3
+texture_hover = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Wear6" type="TextureButton" parent="List/Result/MaterialSelect/Buttons"]
+use_parent_material = true
+margin_bottom = 256.0
+size_flags_vertical = 3
+texture_hover = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="List/Result/MaterialSelect"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+margin_right = 40.0
+text = "MATERIAL SLOT NAME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelInformation" parent="List" instance=ExtResource( 6 )]
+margin_top = 288.0
+margin_right = 256.0
+margin_bottom = 598.0
+
+[connection signal="toggled" from="List/TitleBar/BackgroundToggle" to="." method="_on_BackgroundToggle_toggled"]

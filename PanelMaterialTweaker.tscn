@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://PanelMaterialTweaker.gd" type="Script" id=1]
+[ext_resource path="res://Sliders.tscn" type="PackedScene" id=2]
+
+[node name="PanelMaterialTweaker" type="PanelContainer"]
+margin_right = 228.0
+margin_bottom = 114.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="List" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 221.0
+margin_bottom = 107.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="List"]
+margin_right = 214.0
+margin_bottom = 20.0
+custom_constants/separation = 0
+
+[node name="Title" type="Label" parent="List/HBoxContainer"]
+margin_top = 3.0
+margin_right = 95.0
+margin_bottom = 17.0
+text = "Material Tweak"
+
+[node name="Button" type="Button" parent="List/HBoxContainer"]
+margin_left = 171.0
+margin_right = 214.0
+margin_bottom = 20.0
+size_flags_horizontal = 10
+text = "Rand"
+
+[node name="Sliders" parent="List" instance=ExtResource( 2 )]
+margin_top = 24.0
+margin_right = 214.0
+margin_bottom = 100.0
+required_sliders = [ [ "Cubemap", 0, 1, 0.01 ], [ "Gloss", 0, 1, 0.01 ], [ "Metalness", 0, 1, 0.01 ], [ "Specular", 0, 1, 0.01 ] ]
+
+[connection signal="pressed" from="List/HBoxContainer/Button" to="." method="_on_rand_pressed"]
+[connection signal="updated_values" from="List/Sliders" to="." method="_on_Sliders_updated_values"]

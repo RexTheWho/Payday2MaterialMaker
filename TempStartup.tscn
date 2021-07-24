@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://TempStartup.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 313.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="TextEdit" type="LineEdit" parent="PanelContainer/HBoxContainer"]
+margin_right = 256.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\PAYDAY 2\\workshop\\2021-07-22-1420"
+placeholder_text = "Paste output here..."
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer"]
+margin_left = 256.0
+margin_right = 306.0
+margin_bottom = 24.0
+text = "START"
+
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
