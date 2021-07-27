@@ -1,5 +1,7 @@
 extends Control
 
+signal selected_new_material(mat_index, is_wear)
+
 const amount = 6
 
 func _ready():
@@ -18,7 +20,9 @@ func _ready():
 
 
 func _on_material_selected(index:int, is_wear:bool):
-	get_parent().get_parent().get_parent()._draw_changes()
+	# Replace this with a selector to refresh gradient sliders.
+#	get_parent().get_parent().get_parent()._draw_changes()
+	emit_signal("selected_new_material", index, is_wear)
 
 
 func _on_material_mouse_entered(index:int, is_wear:bool):

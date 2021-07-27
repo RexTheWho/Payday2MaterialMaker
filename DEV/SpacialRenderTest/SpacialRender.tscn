@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://SpacialRenderTest/plaque.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://SpacialRenderTest/SpacialRender.gd" type="Script" id=2]
+[ext_resource path="res://Materials/SpacialRender.tres" type="Material" id=3]
+
+[sub_resource type="Environment" id=1]
+background_energy = 0.0
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.0
+
+[node name="SpacialRender" type="ViewportContainer"]
+margin_right = 300.0
+margin_bottom = 300.0
+stretch = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 300, 300 )
+own_world = true
+transparent_bg = true
+handle_input_locally = false
+msaa = 2
+render_target_update_mode = 3
+
+[node name="Spacial" type="Spatial" parent="Viewport"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Viewport/Spacial"]
+environment = SubResource( 1 )
+
+[node name="Camera" type="Camera" parent="Viewport/Spacial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
+current = true
+fov = 45.0
+
+[node name="PlaqueRot" type="Spatial" parent="Viewport/Spacial"]
+
+[node name="Plaque" type="MeshInstance" parent="Viewport/Spacial/PlaqueRot"]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="OmniLight" type="OmniLight" parent="Viewport/Spacial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 2 )
+light_color = Color( 1, 0.972549, 0.972549, 1 )
+light_energy = 2.0
+
+[node name="OmniLight2" type="OmniLight" parent="Viewport/Spacial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4 )
+light_color = Color( 0.92549, 0.964706, 1, 1 )
+light_energy = 2.0

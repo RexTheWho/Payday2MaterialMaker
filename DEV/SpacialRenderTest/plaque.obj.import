@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/plaque.obj-8be4ddffd6a852ea347824def6acaa71.mesh"
+
+[deps]
+
+files=[ "res://.import/plaque.obj-8be4ddffd6a852ea347824def6acaa71.mesh" ]
+
+source_file="res://SpacialRenderTest/plaque.obj"
+dest_files=[ "res://.import/plaque.obj-8be4ddffd6a852ea347824def6acaa71.mesh", "res://.import/plaque.obj-8be4ddffd6a852ea347824def6acaa71.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,187 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://PanelLayoutEditor.gd" type="Script" id=1]
+
+[node name="PanelLayoutEditor" type="PanelContainer"]
+margin_right = 192.0
+margin_bottom = 256.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainV" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 185.0
+margin_bottom = 249.0
+
+[node name="Title" type="Label" parent="MainV"]
+margin_right = 178.0
+margin_bottom = 14.0
+text = "Layout Builder"
+
+[node name="VariationBox" type="HBoxContainer" parent="MainV"]
+margin_top = 18.0
+margin_right = 178.0
+margin_bottom = 46.0
+
+[node name="Previous" type="Button" parent="MainV/VariationBox"]
+margin_top = 2.0
+margin_right = 24.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 24, 24 )
+size_flags_vertical = 4
+text = "<"
+
+[node name="PanelContainer" type="PanelContainer" parent="MainV/VariationBox"]
+margin_left = 28.0
+margin_right = 150.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainV/VariationBox/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 115.0
+margin_bottom = 21.0
+text = "Variation"
+align = 1
+
+[node name="Next" type="Button" parent="MainV/VariationBox"]
+margin_left = 154.0
+margin_top = 2.0
+margin_right = 178.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 24, 24 )
+size_flags_vertical = 4
+text = ">"
+
+[node name="Tweaker" type="GridContainer" parent="MainV"]
+margin_top = 50.0
+margin_right = 178.0
+margin_bottom = 242.0
+columns = 2
+
+[node name="Name0" type="Label" parent="MainV/Tweaker"]
+margin_top = 5.0
+margin_right = 87.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Metal"
+align = 1
+
+[node name="SpinBox0" type="SpinBox" parent="MainV/Tweaker"]
+margin_left = 91.0
+margin_right = 178.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+max_value = 1.0
+align = 1
+
+[node name="Name1" type="Label" parent="MainV/Tweaker"]
+margin_top = 33.0
+margin_right = 87.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+text = "Metal"
+align = 1
+
+[node name="SpinBox1" type="SpinBox" parent="MainV/Tweaker"]
+margin_left = 91.0
+margin_top = 28.0
+margin_right = 178.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+max_value = 1.0
+align = 1
+
+[node name="Name2" type="Label" parent="MainV/Tweaker"]
+margin_top = 61.0
+margin_right = 87.0
+margin_bottom = 75.0
+size_flags_horizontal = 3
+text = "Metal"
+align = 1
+
+[node name="SpinBox2" type="SpinBox" parent="MainV/Tweaker"]
+margin_left = 91.0
+margin_top = 56.0
+margin_right = 178.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+max_value = 1.0
+align = 1
+
+[node name="Name3" type="Label" parent="MainV/Tweaker"]
+margin_top = 89.0
+margin_right = 87.0
+margin_bottom = 103.0
+size_flags_horizontal = 3
+text = "Metal"
+align = 1
+
+[node name="SpinBox3" type="SpinBox" parent="MainV/Tweaker"]
+margin_left = 91.0
+margin_top = 84.0
+margin_right = 178.0
+margin_bottom = 108.0
+size_flags_horizontal = 3
+max_value = 1.0
+align = 1
+
+[node name="Name4" type="Label" parent="MainV/Tweaker"]
+margin_top = 117.0
+margin_right = 87.0
+margin_bottom = 131.0
+size_flags_horizontal = 3
+text = "Metal"
+align = 1
+
+[node name="SpinBox4" type="SpinBox" parent="MainV/Tweaker"]
+margin_left = 91.0
+margin_top = 112.0
+margin_right = 178.0
+margin_bottom = 136.0
+size_flags_horizontal = 3
+max_value = 1.0
+align = 1
+
+[node name="Name5" type="Label" parent="MainV/Tweaker"]
+margin_top = 145.0
+margin_right = 87.0
+margin_bottom = 159.0
+size_flags_horizontal = 3
+text = "Metal"
+align = 1
+
+[node name="SpinBox5" type="SpinBox" parent="MainV/Tweaker"]
+margin_left = 91.0
+margin_top = 140.0
+margin_right = 178.0
+margin_bottom = 164.0
+size_flags_horizontal = 3
+max_value = 1.0
+align = 1
+
+[node name="Name6" type="Label" parent="MainV/Tweaker"]
+margin_top = 173.0
+margin_right = 87.0
+margin_bottom = 187.0
+size_flags_horizontal = 3
+text = "Metal"
+align = 1
+
+[node name="SpinBox6" type="SpinBox" parent="MainV/Tweaker"]
+margin_left = 91.0
+margin_top = 168.0
+margin_right = 178.0
+margin_bottom = 192.0
+size_flags_horizontal = 3
+max_value = 1.0
+align = 1
+
+[connection signal="pressed" from="MainV/VariationBox/Previous" to="." method="_on_Previous_pressed"]
+[connection signal="pressed" from="MainV/VariationBox/Next" to="." method="_on_Next_pressed"]

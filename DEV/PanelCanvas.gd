@@ -16,14 +16,16 @@ func _ready():
 
 func _export_project(project_name):
 	print("EXPORT")
-	var output_loc = REF.get_project_path() + "base_gradient/"
+	var output_loc = REF.get_project_path() + REF.default_generator_path + "/base_gradient/"
 	for material_type in REF.mat_classes:
 		var output_name = project_name + "_" + material_type
 		var SAV_DDS = load("res://Tools/export_dds.gd").new()
 		_draw_changes()
 		if SAV_DDS.save_dds_from_image(working_image, output_loc + output_name) != OK:
 			push_error("Failed to save base_gradient at " + output_loc + output_name)
-
+	# XML
+	var SAV_XML = load("res://Tools/export_skin_xml.gd").new()
+	SAV_XML.export_merged_xml( REF.get_project_path() + "main.xml" )
 
 func _draw_changes():
 	working_image = Image.new()
@@ -44,7 +46,8 @@ func _draw_changes():
 			for x in range(mint_width):
 				var color = mint_color
 #				color *= sin((256-y)/256.0)
-				color *= $TEMP.texture.gradient.interpolate(1-get_ratiof(y, vertical_gradient_range))
+				# Mix with gradient
+#				color *= $TEMP.texture.gradient.interpolate(1-get_ratiof(y, vertical_gradient_range))
 				working_image.lock()
 				working_image.set_pixel(REF.get_mint_start(i) + x, y + REF.mat_data_trim, color)
 		
@@ -82,7 +85,9 @@ func _on_BackgroundToggle_toggled(button_pressed):
 
 
 func random_color():
-	return Color(rand_range(1,0),rand_range(1,0),rand_range(1,0))
+	var grey = rand_range(1,0)
+	return Color(grey,grey,grey,randi()%2)
+#	return Color(rand_range(1,0),rand_range(1,0),rand_range(1,0),randi()%2)
 
 
 func random_controlled_color(rgb_start:float, rgb_end:float, alpha_start:float, alpha_end:float):
@@ -107,4 +112,12 @@ func random_trim_color(is_wear:bool):
 
 func get_ratiof(a:float, b:float):
 	return a / (b - 1)
+
+
+
+func _on_MaterialSelect_selected_new_material(mat_index, is_wear):
+	prints("Selected new material", mat_index, is_wear)
+	var node = $List/PanelMaterialEditor
+	node.change_current_material(mat_index, is_wear)
+	
 

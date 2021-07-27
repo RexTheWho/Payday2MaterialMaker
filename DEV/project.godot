@@ -12,16 +12,17 @@ config_version=4
 
 config/name="Payday 2 Material Maker"
 run/main_scene="res://TempStartup.tscn"
+boot_splash/image="res://Textures/start_bg.png"
 config/icon="res://icon.png"
 
 [autoload]
 
-REF="*res://Refences.gd"
+REF="*res://references.gd"
 
 [display]
 
-window/size/width=320
-window/size/height=720
+window/size/width=480
+window/size/height=960
 
 [memory]
 
@@ -37,4 +38,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/filters/msaa=2
 environment/default_environment="res://default_env.tres"

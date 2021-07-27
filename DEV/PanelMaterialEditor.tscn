@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sliders.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SpacialRenderTest/SpacialRender.tscn" type="PackedScene" id=2]
+[ext_resource path="res://PanelMaterialEditor.gd" type="Script" id=3]
+[ext_resource path="res://GradientTestSlider/GradientTestSlider.tscn" type="PackedScene" id=4]
+
+[node name="PanelMaterialEditor" type="PanelContainer"]
+margin_right = 480.0
+margin_bottom = 284.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 473.0
+margin_bottom = 277.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 466.0
+margin_bottom = 14.0
+text = "Modifying Gradient #0"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 466.0
+margin_bottom = 270.0
+
+[node name="Result" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 231.0
+margin_bottom = 252.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SpacialRender" parent="VBoxContainer/HBoxContainer/Result" instance=ExtResource( 2 )]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 224.0
+margin_bottom = 245.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Controls" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 235.0
+margin_right = 466.0
+margin_bottom = 252.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Controls"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 224.0
+margin_bottom = 245.0
+
+[node name="GradientSlider" parent="VBoxContainer/HBoxContainer/Controls/VBoxContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+margin_right = 217.0
+margin_bottom = 78.0
+
+[node name="Sliders" parent="VBoxContainer/HBoxContainer/Controls/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 82.0
+margin_right = 217.0
+margin_bottom = 238.0
+required_sliders = [ [ "Red", 0, 1, 0.01 ], [ "Green", 0, 1, 0.01 ], [ "Blue", 0, 1, 0.01 ], [ "Pattern", 0, 1, 0.01 ], [ "Cubemap" ], [ "Gloss" ], [ "Metalness" ], [ "Specular" ] ]
+
+[connection signal="changed_gradient_idx" from="VBoxContainer/HBoxContainer/Controls/VBoxContainer/GradientSlider" to="." method="_on_GradientSlider_changed_gradient_idx"]
+[connection signal="updated_values" from="VBoxContainer/HBoxContainer/Controls/VBoxContainer/Sliders" to="." method="_on_Sliders_updated_values"]
