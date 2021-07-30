@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://ColorSliders.gd" type="Script" id=1]
+[ext_resource path="res://ToolNodes/ColorSliders.gd" type="Script" id=1]
 
 [node name="Colors" type="GridContainer"]
 margin_right = 214.0

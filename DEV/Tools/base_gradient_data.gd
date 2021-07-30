@@ -6,7 +6,9 @@ var project_path:String
 const default_icon_output = "assets/guis/dlcs/wep_skn_gen/textures/pd2/blackmarket/icons/weapon_color"
 const default_generator_path = "assets/generated"
 const mat_data_trim = 4
-const mat_groups = [
+
+# formerly mat_groups
+const paint_strips = [
 	{
 		name = "Metal Primary",
 		mint_s = 0,
@@ -44,7 +46,8 @@ const mat_groups = [
 		wear_e = 256,
 	}
 ]
-const mat_classes = {
+# formerly mat_classes
+const material_variations = {
 	base_default = {
 		name = "Default",
 		rows = [1, 1, 1, 1, 1, 0]
@@ -76,30 +79,30 @@ const mat_classes = {
 }
 
 func get_mint_width(index:int):
-	var group_data = mat_groups[index]
+	var group_data = paint_strips[index]
 	var width = group_data["wear_s"] - group_data["mint_s"]
 	return width
 
 func get_wear_width(index:int):
-	var group_data = mat_groups[index]
+	var group_data = paint_strips[index]
 	var width = group_data["wear_e"] - group_data["wear_s"]
 	return width
 
 func get_full_width(index:int):
-	var group_data = mat_groups[index]
+	var group_data = paint_strips[index]
 	var width = group_data["wear_e"] - group_data["mint_s"]
 	return width
 
 func get_mint_start(index:int):
-	var group_data = mat_groups[index]
+	var group_data = paint_strips[index]
 	return group_data["mint_s"]
 
 func get_wear_start(index:int):
-	var group_data = mat_groups[index]
+	var group_data = paint_strips[index]
 	return group_data["wear_s"]
 
 func get_wear_end(index:int):
-	var group_data = mat_groups[index]
+	var group_data = paint_strips[index]
 	return group_data["wear_e"]
 
 func get_project_path():

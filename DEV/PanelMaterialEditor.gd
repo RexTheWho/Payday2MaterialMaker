@@ -1,5 +1,6 @@
 extends PanelContainer
 
+signal updated_material()
 onready var spacial_renderer = $VBoxContainer/HBoxContainer/Result/SpacialRender
 
 func _ready():
@@ -22,6 +23,7 @@ func _on_GradientSlider_changed_gradient_idx(index):
 		Pattern = gradient.get_color(index).a
 	}
 	slider_controller.set_data(color_data)
+	_updated()
 
 
 func _on_Sliders_updated_values(data):
@@ -38,5 +40,7 @@ func _on_Sliders_updated_values(data):
 	spacial_renderer.set_new_material("Gloss", data["Gloss"])
 	spacial_renderer.set_new_material("Metalness", data["Metalness"])
 	spacial_renderer.set_new_material("Specular", data["Specular"])
+	_updated()
 
-
+func _updated():
+	emit_signal("updated_material")

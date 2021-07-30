@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Sliders.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ToolNodes/Sliders.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SpacialRenderTest/SpacialRender.tscn" type="PackedScene" id=2]
 [ext_resource path="res://PanelMaterialEditor.gd" type="Script" id=3]
 [ext_resource path="res://GradientTestSlider/GradientTestSlider.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Textures/skip.png" type="Texture" id=5]
 
 [node name="PanelMaterialEditor" type="PanelContainer"]
 margin_right = 480.0
@@ -17,7 +18,7 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 473.0
-margin_bottom = 277.0
+margin_bottom = 295.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 466.0
@@ -36,12 +37,23 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="SpacialRender" parent="VBoxContainer/HBoxContainer/Result" instance=ExtResource( 2 )]
+visible = false
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 224.0
 margin_bottom = 245.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="skip" type="TextureRect" parent="VBoxContainer/HBoxContainer/Result"]
+self_modulate = Color( 1, 1, 1, 0.141176 )
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 224.0
+margin_bottom = 245.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
 
 [node name="Controls" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 margin_left = 235.0

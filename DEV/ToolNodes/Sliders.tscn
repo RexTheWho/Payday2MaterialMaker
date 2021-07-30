@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Sliders.gd" type="Script" id=1]
+[ext_resource path="res://ToolNodes/Sliders.gd" type="Script" id=1]
 
 [node name="Sliders" type="GridContainer"]
 margin_right = 218.0

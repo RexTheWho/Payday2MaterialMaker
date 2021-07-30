@@ -41,6 +41,7 @@ func _on_SaveButton_pressed():
 		output_name = get_node(namer).text.strip_escapes()
 		output_name = output_name.replace( " ", "_")
 	
+	generate_from_gradients()
 	var SAV_DDS = load("res://Tools/export_dds.gd").new()
 	if SAV_DDS.save_dds_from_image(current_gui_icon, output_loc + output_name) != OK:
 		push_error("Failed to save base_gradient!!")

@@ -4,7 +4,7 @@
 
 [node name="PanelLayoutEditor" type="PanelContainer"]
 margin_right = 192.0
-margin_bottom = 256.0
+margin_bottom = 234.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
@@ -16,17 +16,31 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 185.0
-margin_bottom = 249.0
+margin_bottom = 231.0
 
-[node name="Title" type="Label" parent="MainV"]
+[node name="Title" type="HBoxContainer" parent="MainV"]
 margin_right = 178.0
-margin_bottom = 14.0
-text = "Layout Builder"
+margin_bottom = 24.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="MainV/Title"]
+margin_top = 5.0
+margin_right = 72.0
+margin_bottom = 19.0
+text = "Paint Strips"
+
+[node name="CheckBox" type="CheckBox" parent="MainV/Title"]
+margin_left = 115.0
+margin_right = 178.0
+margin_bottom = 24.0
+size_flags_horizontal = 10
+disabled = true
+text = "Splits"
 
 [node name="VariationBox" type="HBoxContainer" parent="MainV"]
-margin_top = 18.0
+margin_top = 28.0
 margin_right = 178.0
-margin_bottom = 46.0
+margin_bottom = 56.0
 
 [node name="Previous" type="Button" parent="MainV/VariationBox"]
 margin_top = 2.0
@@ -60,9 +74,9 @@ size_flags_vertical = 4
 text = ">"
 
 [node name="Tweaker" type="GridContainer" parent="MainV"]
-margin_top = 50.0
+margin_top = 60.0
 margin_right = 178.0
-margin_bottom = 242.0
+margin_bottom = 224.0
 columns = 2
 
 [node name="Name0" type="Label" parent="MainV/Tweaker"]
@@ -166,22 +180,6 @@ size_flags_horizontal = 3
 max_value = 1.0
 align = 1
 
-[node name="Name6" type="Label" parent="MainV/Tweaker"]
-margin_top = 173.0
-margin_right = 87.0
-margin_bottom = 187.0
-size_flags_horizontal = 3
-text = "Metal"
-align = 1
-
-[node name="SpinBox6" type="SpinBox" parent="MainV/Tweaker"]
-margin_left = 91.0
-margin_top = 168.0
-margin_right = 178.0
-margin_bottom = 192.0
-size_flags_horizontal = 3
-max_value = 1.0
-align = 1
-
+[connection signal="toggled" from="MainV/Title/CheckBox" to="." method="_on_CheckBox_toggled"]
 [connection signal="pressed" from="MainV/VariationBox/Previous" to="." method="_on_Previous_pressed"]
 [connection signal="pressed" from="MainV/VariationBox/Next" to="." method="_on_Next_pressed"]

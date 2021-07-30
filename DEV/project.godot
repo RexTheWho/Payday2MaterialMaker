@@ -11,18 +11,18 @@ config_version=4
 [application]
 
 config/name="Payday 2 Material Maker"
-run/main_scene="res://TempStartup.tscn"
+run/main_scene="res://StartupDirectoryManager.tscn"
 boot_splash/image="res://Textures/start_bg.png"
 config/icon="res://icon.png"
 
 [autoload]
 
-REF="*res://references.gd"
+REF="*res://Tools/base_gradient_data.gd"
 
 [display]
 
-window/size/width=480
-window/size/height=960
+window/size/width=500
+window/size/height=760
 
 [memory]
 
