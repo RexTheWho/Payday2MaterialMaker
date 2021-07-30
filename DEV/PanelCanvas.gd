@@ -186,11 +186,22 @@ func _on_MaterialSelect_selected_new_material(mat_index, is_wear):
 	var node = $List/PanelMaterialEditor
 	node.change_current_material(mat_index, is_wear)
 
+##### EVERYTHING HERE IS JUST NO!!
+##### EVERYTHING HERE IS JUST NO!!
+# Current implementation gets updated a ton and lags!
+var temp_class_id
+func _update_on_changed_material_variation_data(class_id):
+	temp_class_id=class_id
+	_asdadad_changes()
 
+func _on_PanelLayoutEditor_change_paintstrip_index(strip_index):
+	_asdadad_changes()
 
-func _on_PanelLayoutEditor_change_material_group(class_id):
-	_draw_changes(REF.material_variations[class_id].rows, false)
+func _asdadad_changes():
+	_draw_changes(REF.material_variations[temp_class_id].rows, false)
 
+##### EVERYTHING HERE IS JUST NO!!
+##### EVERYTHING HERE IS JUST NO!!
 
 func _on_PanelMaterialEditor_updated_material():
 	print("UPD")
@@ -198,3 +209,4 @@ func _on_PanelMaterialEditor_updated_material():
 
 func _on_PanelLayoutEditor_toggle_paintstrip_gap_modes(mode):
 	_update_previews( draw_material_image(REF.material_variations.base_default.rows, mode) )
+

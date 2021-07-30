@@ -180,6 +180,7 @@ size_flags_horizontal = 3
 max_value = 1.0
 align = 1
 
+[connection signal="change_material_variation" from="." to="." method="_on_PanelLayoutEditor_change_material_variation"]
 [connection signal="toggled" from="MainV/Title/CheckBox" to="." method="_on_CheckBox_toggled"]
 [connection signal="pressed" from="MainV/VariationBox/Previous" to="." method="_on_Previous_pressed"]
 [connection signal="pressed" from="MainV/VariationBox/Next" to="." method="_on_Next_pressed"]

@@ -1,17 +1,12 @@
 extends PanelContainer
 
 signal change_material_variation(material_var)
-signal change_paintstrip_index(strip_index, value)
+signal change_paintstrip_index(modified_material_variations)
 signal toggle_paintstrip_gap_modes(mode)
 var current_mat_class = "base_default"
 var modified_material_variations = REF.material_variations
 
 func _ready():
-	for i in $MainV/Tweaker.get_children():
-		var amount = 0
-		if "SpinBox" in i:
-			i.connect()
-			amount += 1
 	_setup_material_tweaker_names()
 	_update_material_tweaker_values(current_mat_class)
 	_update_spinbox_min_max(6)
@@ -49,9 +44,13 @@ func _on_Next_pressed():
 	emit_signal("change_material_variation", current_mat_class)
 
 
+func _on_PanelLayoutEditor_change_material_variation(_material_var):
+	_update_spinbox_values()
+
+
+
 func get_next_class():
 	var classes = modified_material_variations.keys()
-	_update_spinbox_values()
 	var curr_idx = classes.find(current_mat_class)
 	if curr_idx+1 >= classes.size():
 		return classes[0]
@@ -60,15 +59,15 @@ func get_next_class():
 
 func get_previous_class():
 	var classes = modified_material_variations.keys()
-	_update_spinbox_values()
 	var curr_idx = classes.find(current_mat_class)
 	return classes[curr_idx-1]
 
 func _update_spinbox_values():
-	for i in modified_material_variations:
+	for i in 6:
 		var node:SpinBox = get_node_or_null("MainV/Tweaker/SpinBox" + str(i))
 		if node:
-			node.value = modified_material_variations[current_mat_class].rows[i]
+			var new_value = modified_material_variations[current_mat_class].rows[i]
+			node.value = new_value
 
 func _update_spinbox_min_max(new_max:int):
 	for i in range(6):
@@ -85,7 +84,6 @@ func _connect_spinbox_value_changes():
 
 func _updated_paintstrip_index(value:int, pos_in_index:int):
 	modified_material_variations[current_mat_class].rows[pos_in_index] = value
-	prints("change_paintstrip_index", modified_material_variations)
 	emit_signal("change_paintstrip_index", modified_material_variations)
 
 
