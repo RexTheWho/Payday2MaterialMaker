@@ -4,9 +4,12 @@ signal updated_material()
 onready var spacial_renderer = $VBoxContainer/HBoxContainer/Result/SpacialRender
 
 func _ready():
-	pass
+	$Label.visible = true
+	$VBoxContainer.visible = false
 
 func change_current_material(idx:int, is_wear:bool):
+	$Label.visible = false
+	$VBoxContainer.visible = true
 	$VBoxContainer/Label.text = "Modifying Gradient #" + str(idx)
 	if is_wear:
 		$VBoxContainer/Label.text += " Wear"

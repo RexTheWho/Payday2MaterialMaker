@@ -18,7 +18,7 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 473.0
-margin_bottom = 295.0
+margin_bottom = 277.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 466.0
@@ -78,6 +78,17 @@ margin_top = 82.0
 margin_right = 217.0
 margin_bottom = 238.0
 required_sliders = [ [ "Red", 0, 1, 0.01 ], [ "Green", 0, 1, 0.01 ], [ "Blue", 0, 1, 0.01 ], [ "Pattern", 0, 1, 0.01 ], [ "Cubemap" ], [ "Gloss" ], [ "Metalness" ], [ "Specular" ] ]
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = 171.0
+margin_top = 135.0
+margin_right = 309.0
+margin_bottom = 149.0
+size_flags_horizontal = 4
+text = "SELECT A PAINT STRIP"
+align = 1
+valign = 1
 
 [connection signal="changed_gradient_idx" from="VBoxContainer/HBoxContainer/Controls/VBoxContainer/GradientSlider" to="." method="_on_GradientSlider_changed_gradient_idx"]
 [connection signal="updated_values" from="VBoxContainer/HBoxContainer/Controls/VBoxContainer/Sliders" to="." method="_on_Sliders_updated_values"]

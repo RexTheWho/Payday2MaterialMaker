@@ -17,6 +17,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 result = NodePath("List/PanelContainer/HBoxContainer/Result")
+paint_strip_selector = NodePath("List/PanelContainer/HBoxContainer/Result/MaterialSelect")
 
 [node name="List" type="VBoxContainer" parent="."]
 margin_left = 7.0
@@ -206,9 +207,9 @@ margin_right = 466.0
 margin_bottom = 586.0
 
 [connection signal="toggled" from="List/TitleBar/BackgroundToggle" to="." method="_on_BackgroundToggle_toggled"]
-[connection signal="selected_new_material" from="List/PanelContainer/HBoxContainer/Result/MaterialSelect" to="." method="_on_MaterialSelect_selected_new_material"]
+[connection signal="selected_new_material" from="List/PanelContainer/HBoxContainer/Result/MaterialSelect" to="." method="_on_selected_paint_strip"]
 [connection signal="change_material_variation" from="List/PanelContainer/HBoxContainer/PanelLayoutEditor" to="." method="_update_on_changed_material_variation_data"]
 [connection signal="change_paintstrip_index" from="List/PanelContainer/HBoxContainer/PanelLayoutEditor" to="." method="_on_PanelLayoutEditor_change_paintstrip_index"]
-[connection signal="toggle_paintstrip_gap_modes" from="List/PanelContainer/HBoxContainer/PanelLayoutEditor" to="." method="_on_PanelLayoutEditor_toggle_paintstrip_gap_modes"]
 [connection signal="toggle_paintstrip_gap_modes" from="List/PanelContainer/HBoxContainer/PanelLayoutEditor" to="List/PanelContainer/HBoxContainer/Result/MaterialSelect" method="_on_PanelLayoutEditor_toggle_paintstrip_gap_modes"]
+[connection signal="toggle_paintstrip_gap_modes" from="List/PanelContainer/HBoxContainer/PanelLayoutEditor" to="." method="_on_PanelLayoutEditor_toggle_paintstrip_gap_modes"]
 [connection signal="updated_material" from="List/PanelMaterialEditor" to="." method="_on_PanelMaterialEditor_updated_material"]

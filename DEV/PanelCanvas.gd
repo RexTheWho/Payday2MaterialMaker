@@ -1,11 +1,34 @@
 extends PanelContainer
 
+signal material_update(strip_index, gradient_index)
+
+enum paint_strip_idx{paint_strips_mint, paint_strips_wear}
+
+const default_rand_range1 = 0.5
+const default_rand_range2 = 0.8
+
 export(NodePath) var project_manager
 export(NodePath) var result
+export(NodePath) var paint_strip_selector
+
+onready var paint_strips_mint:PoolColorArray = [
+	Color.darkgray,
+	random_controlled_color(default_rand_range1, default_rand_range2, 1.0, 1.0 ),
+	random_controlled_color(default_rand_range1, default_rand_range2, 1.0, 1.0 ),
+	random_controlled_color(default_rand_range1, default_rand_range2, 1.0, 1.0 ),
+	random_controlled_color(default_rand_range1, default_rand_range2, 1.0, 1.0 ),
+	random_controlled_color(default_rand_range1, default_rand_range2, 1.0, 1.0 ),
+]
+var paint_strips_wear:PoolColorArray = [
+	Color(0.1, 0.1, 0.1, 0.25),
+]
 
 func _ready():
 	# Could do with a better handling here
 	if project_manager and get_node(project_manager).connect("export_project", self, "_export_project", []) != OK:
+		push_warning("ERR")
+		
+	if paint_strip_selector and connect("material_update", get_node(paint_strip_selector), "set_strip_index_to_new_gradient", []) != OK:
 		push_warning("ERR")
 	
 	randomize()
@@ -13,6 +36,7 @@ func _ready():
 		_draw_changes(REF.material_variations.base_default.rows, true)
 
 
+# Generate files from current project.
 func _export_project(project_name):
 	prints("EXPORT",project_name)
 	var output_loc = REF.get_project_path() + REF.default_generator_path + "/base_gradient/"
@@ -26,16 +50,8 @@ func _export_project(project_name):
 	var SAV_XML = load("res://Tools/export_skin_xml.gd").new()
 	SAV_XML.export_merged_xml( REF.get_project_path() + "main.xml" )
 
-const TEMP_COLORS = [
-	Color(0.1, 0.1, 0.1, 0),
-	Color.greenyellow,
-	Color.blue,
-	Color.red,
-	Color.green,
-	Color.orangered,
-	Color.cyan,
-]
 
+# Return an Image from paint strips, 'exporting' false changes the distribution of row colors.
 func _draw_changes(index:Array, exporting:bool):
 	var working_image = Image.new()
 	working_image.create(256, 256, false, Image.FORMAT_RGBA8)
@@ -46,11 +62,11 @@ func _draw_changes(index:Array, exporting:bool):
 		var wear_width = REF.get_wear_width(i)
 		var vertical_gradient_range = 256 - REF.mat_data_trim
 		
-		
 		var trim_color = random_trim_color(false)
 		var trimwear_color = random_trim_color(true)
-		var wear_color = Color.darkgray
-		var mint_color = TEMP_COLORS[index[i]]
+		
+		var mint_color = get_paint_strip(index[i], false)
+		var wear_color = get_paint_strip(index[i], true)
 		
 		# COLOR MINT
 		for y in range(vertical_gradient_range):
@@ -90,6 +106,8 @@ func _draw_changes(index:Array, exporting:bool):
 		print("update texture")
 		get_node(result).texture = new_tex
 
+
+# Return an Image from paint strips, 'proper' false changes the distribution of row colors.
 func draw_material_image(index:Array, proper:bool):
 	var material_image = Image.new()
 	material_image.create(256, 256, false, Image.FORMAT_RGBA8)
@@ -109,8 +127,8 @@ func draw_material_image(index:Array, proper:bool):
 		var vertical_gradient_range = 256 - REF.mat_data_trim
 		var trim_color = random_trim_color(false)
 		var trimwear_color = random_trim_color(true)
-		var wear_color = Color.darkgray
-		var mint_color = TEMP_COLORS[index[i]]
+		var wear_color = get_paint_strip(index[i], true)
+		var mint_color = get_paint_strip(index[i], false)
 		
 		# PAINT MINT
 		for y in range(vertical_gradient_range):
@@ -142,20 +160,24 @@ func draw_material_image(index:Array, proper:bool):
 	material_image.unlock()
 	return material_image
 
+
+#
 func _update_previews(new_tex:Texture):
 	get_node(result).texture = new_tex
 
 
+# Toggle stripped background to show opacity.
 func _on_BackgroundToggle_toggled(button_pressed):
 	$List/PanelContainer/HBoxContainer/Result/BGVisuals.visible = button_pressed
 
 
+# Random gray Color.
 func random_color():
 	var grey = rand_range(1,0)
 	return Color(grey,grey,grey,randi()%2)
-#	return Color(rand_range(1,0),rand_range(1,0),rand_range(1,0),randi()%2)
 
 
+# Random Color from controlled options.
 func random_controlled_color(rgb_start:float, rgb_end:float, alpha_start:float, alpha_end:float):
 	return Color(
 		rand_range(rgb_start, rgb_end),
@@ -165,6 +187,7 @@ func random_controlled_color(rgb_start:float, rgb_end:float, alpha_start:float, 
 	)
 
 
+# Randomish color for the top4.
 func random_trim_color(is_wear:bool):
 	var value = Color(
 		rand_range(0.1,0.2),
@@ -176,37 +199,65 @@ func random_trim_color(is_wear:bool):
 		value.v *= 0.3
 	return value
 
+
+# Math to get a 0-1 float from 2 numbers-ish.
 func get_ratiof(a:float, b:float):
 	return a / (b - 1)
 
 
 
-func _on_MaterialSelect_selected_new_material(mat_index, is_wear):
-	prints("Selected new material", mat_index, is_wear)
+func _on_selected_paint_strip(mat_index, is_wear):
+	prints("Selected new paint strip", mat_index, is_wear)
 	var node = $List/PanelMaterialEditor
 	node.change_current_material(mat_index, is_wear)
+
+
 
 ##### EVERYTHING HERE IS JUST NO!!
 ##### EVERYTHING HERE IS JUST NO!!
 # Current implementation gets updated a ton and lags!
-var temp_class_id
-func _update_on_changed_material_variation_data(class_id):
-	temp_class_id=class_id
-	_asdadad_changes()
+var temp_class_id:Dictionary
+func _update_on_changed_material_variation_data(material_var):
+	print(material_var)
+	temp_class_id = material_var
+	_update_changes()
 
 func _on_PanelLayoutEditor_change_paintstrip_index(strip_index):
-	_asdadad_changes()
+	prints("PLEi", strip_index[temp_class_id["id"]].rows)
+	_update_changes()
 
-func _asdadad_changes():
-	_draw_changes(REF.material_variations[temp_class_id].rows, false)
-
+func _update_changes():
+	for i in temp_class_id.rows:
+		emit_signal("material_update", i, temp_class_id.rows[i])
+	if !temp_class_id:
+		_draw_changes(REF.material_variations["base_default"].rows, false)
+	else:
+		_draw_changes(temp_class_id.rows, false)
 ##### EVERYTHING HERE IS JUST NO!!
 ##### EVERYTHING HERE IS JUST NO!!
 
+
+# Unsure if used.
 func _on_PanelMaterialEditor_updated_material():
-	print("UPD")
+	print("_on_PanelMaterialEditor_updated_material")
+	breakpoint # Lets see if it breaks
 
 
+# Paintstrip gap issues
 func _on_PanelLayoutEditor_toggle_paintstrip_gap_modes(mode):
 	_update_previews( draw_material_image(REF.material_variations.base_default.rows, mode) )
 
+
+# Return a paintstrip- Current implementation only does Color, later needs to be swapped to Gradient.
+func get_paint_strip(index:int, wear:bool):
+	var paint_strips:Array
+	
+	if !wear:
+		paint_strips = paint_strips_mint
+	else:
+		paint_strips = paint_strips_wear
+	
+	if index > paint_strips.size()-1:
+		return paint_strips[0]
+	else:
+		return paint_strips[index]

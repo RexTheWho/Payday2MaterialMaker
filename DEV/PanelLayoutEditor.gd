@@ -12,8 +12,7 @@ func _ready():
 	_update_spinbox_min_max(6)
 	_update_spinbox_values()
 	_connect_spinbox_value_changes()
-
-
+	$MainV/VariationBox/PanelContainer/Label.text = current_mat_class
 
 
 func _update_material_tweaker_values(group:String):
@@ -35,18 +34,19 @@ func _setup_material_tweaker_names():
 func _on_Previous_pressed():
 	current_mat_class = get_previous_class()
 	$MainV/VariationBox/PanelContainer/Label.text = current_mat_class
-	emit_signal("change_material_variation", current_mat_class)
+#	emit_signal("change_material_variation", current_mat_class)
+	emit_signal("change_material_variation", modified_material_variations[current_mat_class])
 
 
 func _on_Next_pressed():
 	current_mat_class = get_next_class()
 	$MainV/VariationBox/PanelContainer/Label.text = current_mat_class
-	emit_signal("change_material_variation", current_mat_class)
+#	emit_signal("change_material_variation", current_mat_class)
+	emit_signal("change_material_variation", modified_material_variations[current_mat_class])
 
 
 func _on_PanelLayoutEditor_change_material_variation(_material_var):
 	_update_spinbox_values()
-
 
 
 func get_next_class():
@@ -57,10 +57,12 @@ func get_next_class():
 	else:
 		return classes[curr_idx+1]
 
+
 func get_previous_class():
 	var classes = modified_material_variations.keys()
 	var curr_idx = classes.find(current_mat_class)
 	return classes[curr_idx-1]
+
 
 func _update_spinbox_values():
 	for i in 6:
@@ -68,6 +70,7 @@ func _update_spinbox_values():
 		if node:
 			var new_value = modified_material_variations[current_mat_class].rows[i]
 			node.value = new_value
+
 
 func _update_spinbox_min_max(new_max:int):
 	for i in range(6):
@@ -82,7 +85,9 @@ func _connect_spinbox_value_changes():
 		if node and node.connect("value_changed", self, "_updated_paintstrip_index", [i]) != OK:
 			push_warning("Paint Strip Spinboxes not linked!")
 
+
 func _updated_paintstrip_index(value:int, pos_in_index:int):
+	prints("updated paintstrip index", pos_in_index, "to", value)
 	modified_material_variations[current_mat_class].rows[pos_in_index] = value
 	emit_signal("change_paintstrip_index", modified_material_variations)
 

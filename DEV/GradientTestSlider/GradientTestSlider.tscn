@@ -13,11 +13,12 @@ border_width_right = 8
 border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.25, 0.5, 0.75, 1 )
-colors = PoolColorArray( 0, 0, 0, 1, 1, 0.866667, 0, 0.258824, 0, 1, 0.576471, 1, 0.337255, 0, 1, 0.784314, 1, 1, 1, 1 )
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.75, 0.75, 0.75, 1 )
 
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )
+width = 256
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
@@ -41,12 +42,12 @@ spinbox_path = NodePath("VBoxContainer/SpinBox")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 473.0
+margin_right = 493.0
 margin_bottom = 78.0
 custom_constants/separation = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
-margin_right = 466.0
+margin_right = 486.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 0, 24 )
 size_flags_horizontal = 3
@@ -56,7 +57,7 @@ custom_styles/panel = SubResource( 1 )
 [node name="TextureRect2" type="TextureRect" parent="VBoxContainer/PanelContainer"]
 material = ExtResource( 4 )
 margin_left = 8.0
-margin_right = 458.0
+margin_right = 478.0
 margin_bottom = 27.0
 texture = ExtResource( 5 )
 expand = true
@@ -64,7 +65,7 @@ stretch_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/PanelContainer"]
 margin_left = 8.0
-margin_right = 458.0
+margin_right = 478.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -73,12 +74,12 @@ expand = true
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer"]
 margin_top = 27.0
-margin_right = 466.0
+margin_right = 486.0
 margin_bottom = 43.0
 custom_styles/panel = SubResource( 4 )
 
 [node name="HSliderGhost1" type="HSlider" parent="VBoxContainer/PanelContainer2"]
-margin_right = 466.0
+margin_right = 486.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -95,7 +96,7 @@ __meta__ = {
 }
 
 [node name="HSliderGhost0" type="HSlider" parent="VBoxContainer/PanelContainer2"]
-margin_right = 466.0
+margin_right = 486.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -112,7 +113,7 @@ __meta__ = {
 }
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/PanelContainer2"]
-margin_right = 466.0
+margin_right = 486.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -129,7 +130,7 @@ __meta__ = {
 
 [node name="SpinBox" type="SpinBox" parent="VBoxContainer"]
 margin_top = 43.0
-margin_right = 466.0
+margin_right = 486.0
 margin_bottom = 71.0
 size_flags_horizontal = 3
 size_flags_vertical = 3

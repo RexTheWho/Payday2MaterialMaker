@@ -17,6 +17,15 @@ func _init():
 func _ready():
 	for i in required_sliders:
 		_build_slider(i)
+	
+	var gradient:Gradient = get_parent().get_node("GradientSlider").get_gradient()
+	var startup_color_data = {
+		Red = gradient.get_color(0).r,
+		Green = gradient.get_color(0).g,
+		Blue = gradient.get_color(0).b,
+		Pattern = gradient.get_color(0).a,
+	}
+	set_data(startup_color_data)
 
 
 func _build_slider(data:Array):

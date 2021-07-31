@@ -49,30 +49,37 @@ const paint_strips = [
 # formerly mat_classes
 const material_variations = {
 	base_default = {
+		id = "base_default",
 		name = "Default",
 		rows = [1, 1, 1, 1, 1, 0]
 	},
 	base_metal = {
+		id = "base_metal",
 		name = "Metal",
 		rows = [1, 0, 0, 1, 0, 0]
 	},
 	base_plastic = {
+		id = "base_plastic",
 		name = "Plastic",
 		rows = [0, 1, 1, 0, 0, 0]
 	},
 	base_half = {
+		id = "base_half",
 		name = "Half 1",
 		rows = [1, 0, 1, 0, 0, 0]
 	},
 	base_half_02 = {
-		name = "Half 0",
+		id = "base_half_02",
+		name = "Half 2",
 		rows = [0, 1, 0, 1, 0, 0]
 	},
 	base_detail = {
+		id = "base_detail",
 		name = "Detail",
 		rows = [0, 0, 0, 0, 0, 1]
 	},
 	base_variation = {
+		id = "base_variation",
 		name = "Variation",
 		rows = [0, 0, 0, 0, 0, 0]
 	}
