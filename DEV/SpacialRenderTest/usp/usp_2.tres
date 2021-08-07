@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=2]
+
+[ext_resource path="res://Materials/SpacialRenderWeapon.shader" type="Shader" id=1]
+[ext_resource path="res://Textures/TestPatternGradients/gradient_din_meat_df.texture.dds" type="Texture" id=2]
+[ext_resource path="res://Textures/VanillaDemoPatterns/pattern_meat_hook_df.dds" type="Texture" id=3]
+[ext_resource path="res://SpacialRenderTest/usp/tactical_df_cc.dds" type="Texture" id=4]
+[ext_resource path="res://Textures/TestBaseGradients/base_cop_ferrar_df.texture.dds" type="Texture" id=5]
+[ext_resource path="res://SpacialRenderTest/usp/tactical_nm.dds" type="Texture" id=6]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/pattern_scale = 1.0
+shader_param/pattern_offset = Vector2( 0.292392, 0 )
+shader_param/texture_cc = ExtResource( 4 )
+shader_param/texture_nm = ExtResource( 6 )
+shader_param/texture_base_gradient = ExtResource( 5 )
+shader_param/texture_pattern = ExtResource( 3 )
+shader_param/texture_pattern_gradient = ExtResource( 2 )

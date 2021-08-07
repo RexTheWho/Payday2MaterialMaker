@@ -1,28 +1,43 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://SpacialRenderTest/plaque.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://SpacialRenderTest/SpacialRender.gd" type="Script" id=2]
-[ext_resource path="res://Materials/SpacialRender.tres" type="Material" id=3]
+[ext_resource path="res://SpacialRenderTest/usp/usp.glb" type="PackedScene" id=4]
+[ext_resource path="res://SpacialRenderTest/usp/usp_5.tres" type="Material" id=5]
+[ext_resource path="res://SpacialRenderTest/usp/usp_4.tres" type="Material" id=6]
+[ext_resource path="res://SpacialRenderTest/usp/usp_2.tres" type="Material" id=7]
+[ext_resource path="res://SpacialRenderTest/usp/usp_3.tres" type="Material" id=8]
+[ext_resource path="res://SpacialRenderTest/usp/usp_frame.tres" type="Material" id=9]
+[ext_resource path="res://Textures/TestBaseGradients/base_cop_ferrar_df.texture.dds" type="Texture" id=10]
+[ext_resource path="res://Textures/VanillaDemoPatterns/pattern_meat_hook_df.dds" type="Texture" id=11]
+[ext_resource path="res://Textures/TestPatternGradients/gradient_din_meat_df.texture.dds" type="Texture" id=12]
 
-[sub_resource type="Environment" id=1]
-background_energy = 0.0
+[sub_resource type="ProceduralSky" id=1]
+radiance_size = 0
+sun_longitude = 180.0
+texture_size = 0
+
+[sub_resource type="Environment" id=2]
+background_sky = SubResource( 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
-ambient_light_energy = 0.0
+ambient_light_energy = 8.0
+ambient_light_sky_contribution = 0.25
 
 [node name="SpacialRender" type="ViewportContainer"]
-margin_right = 300.0
-margin_bottom = 300.0
+margin_right = 500.0
+margin_bottom = 500.0
 stretch = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+base_gradient = ExtResource( 10 )
+pattern = ExtResource( 11 )
+pattern_gradient = ExtResource( 12 )
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 300, 300 )
-own_world = true
+size = Vector2( 500, 500 )
 transparent_bg = true
 handle_input_locally = false
 msaa = 2
@@ -30,26 +45,45 @@ render_target_update_mode = 3
 
 [node name="Spacial" type="Spatial" parent="Viewport"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Viewport/Spacial"]
-environment = SubResource( 1 )
-
 [node name="Camera" type="Camera" parent="Viewport/Spacial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
 current = true
 fov = 45.0
 
+[node name="Lights" type="Spatial" parent="Viewport/Spacial"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Viewport/Spacial/Lights"]
+environment = SubResource( 2 )
+
+[node name="OmniLight" type="OmniLight" parent="Viewport/Spacial/Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0326, -0.824776, 8.52439 )
+visible = false
+light_color = Color( 1, 0.972549, 0.972549, 1 )
+light_bake_mode = 0
+omni_range = 16.0
+
+[node name="OmniLight2" type="OmniLight" parent="Viewport/Spacial/Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45657, 0, 2.47481 )
+visible = false
+light_color = Color( 0.92549, 0.964706, 1, 1 )
+light_bake_mode = 0
+omni_range = 16.0
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Viewport/Spacial/Lights"]
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 5, 2 )
+visible = false
+light_specular = 0.1
+
 [node name="PlaqueRot" type="Spatial" parent="Viewport/Spacial"]
 
-[node name="Plaque" type="MeshInstance" parent="Viewport/Spacial/PlaqueRot"]
-mesh = ExtResource( 1 )
-material/0 = ExtResource( 3 )
+[node name="usp" parent="Viewport/Spacial/PlaqueRot" instance=ExtResource( 4 )]
+transform = Transform( 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0 )
 
-[node name="OmniLight" type="OmniLight" parent="Viewport/Spacial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 2 )
-light_color = Color( 1, 0.972549, 0.972549, 1 )
-light_energy = 2.0
+[node name="usp" parent="Viewport/Spacial/PlaqueRot/usp" index="0"]
+material/0 = ExtResource( 9 )
+material/1 = ExtResource( 7 )
+material/2 = ExtResource( 8 )
+material/3 = ExtResource( 6 )
+material/4 = ExtResource( 5 )
 
-[node name="OmniLight2" type="OmniLight" parent="Viewport/Spacial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4 )
-light_color = Color( 0.92549, 0.964706, 1, 1 )
-light_energy = 2.0
+[editable path="Viewport/Spacial/PlaqueRot/usp"]

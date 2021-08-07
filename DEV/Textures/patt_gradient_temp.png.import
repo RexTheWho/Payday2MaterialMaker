@@ -2,33 +2,35 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/patt_gradient_temp.png-50535e821df16560f73c8de72d07cb39.stex"
+path.s3tc="res://.import/patt_gradient_temp.png-50535e821df16560f73c8de72d07cb39.s3tc.stex"
+path.etc2="res://.import/patt_gradient_temp.png-50535e821df16560f73c8de72d07cb39.etc2.stex"
 metadata={
-"vram_texture": false
+"imported_formats": [ "s3tc", "etc2" ],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/patt_gradient_temp.png"
-dest_files=[ "res://.import/patt_gradient_temp.png-50535e821df16560f73c8de72d07cb39.stex" ]
+dest_files=[ "res://.import/patt_gradient_temp.png-50535e821df16560f73c8de72d07cb39.s3tc.stex", "res://.import/patt_gradient_temp.png-50535e821df16560f73c8de72d07cb39.etc2.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=true
 flags/filter=true
-flags/mipmaps=false
+flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
